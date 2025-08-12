@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
+import { Pressable, Image, ActivityIndicator } from 'react-native';
+import { View, Text } from '../../components/Themed';
+import LoginScreen from '../LoginScreen';
 
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+
+import * as SecureStore from 'expo-secure-store';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -15,8 +19,31 @@ function TabBarIcon(props: {
   return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
+
+
 export default function TabLayout() {
+  const [isLogged, setIsLogged] = useState(false);
   const colorScheme = useColorScheme();
+
+  useEffect(() => {
+    (async () => {
+      const token = await SecureStore.getItemAsync('userToken');
+      setIsLogged(!!token);
+    })();
+  }, []);
+
+  if (isLogged === null) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
+  // Si no está logueado, mostramos la pantalla de login
+  if (!isLogged) {
+    return <LoginScreen onLoginSuccess={() => setIsLogged(true)} />;
+  }
 
   return (
     <Tabs
@@ -29,17 +56,23 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+          title: '',
+          headerLeft: () => (
+            <Image
+              source={require('../../assets/images/iconosComponentes/1.png')}
+              style={{ width: 100, height: 100, marginLeft: 8 }}
+            />
+          ),
           headerRight: () => (
-            <Link href="/modal" asChild>
+            <Link href="/Acerca de" asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome
-                    name="info-circle"
+                    name="navicon"
                     size={25}
                     color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                    style={{ marginRight: 24, opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
               </Pressable>
@@ -50,8 +83,27 @@ export default function TabLayout() {
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: '',
+          headerLeft: () => (
+            <Image
+              source={require('../../assets/images/iconosComponentes/1.png')}
+              style={{ width: 100, height: 100, marginLeft: 8 }}
+            />
+          ),
+          tabBarIcon: ({ color }) => <TabBarIcon name="bar-chart-o" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="three"
+        options={{
+          title: '',
+          headerLeft: () => (
+            <Image
+              source={require('../../assets/images/iconosComponentes/1.png')}
+              style={{ width: 100, height: 100, marginLeft: 8 }}
+            />
+          ),
+          tabBarIcon: ({ color }) => <TabBarIcon name="cog" color={color} />,
         }}
       />
     </Tabs>
