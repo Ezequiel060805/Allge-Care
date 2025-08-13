@@ -33,7 +33,7 @@ app/
   LoginScreen.tsx      # Auth screen (optional, can be moved under /auth)
   Acerca de.tsx        # About / Project info (rename to about.tsx if desired)
 assets/
-  ...
+  ```
 
 ## 🏗️ Architecture (High Level)
 
