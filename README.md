@@ -33,7 +33,7 @@ app/
   LoginScreen.tsx      # Auth screen (optional, can be moved under /auth)
   Acerca de.tsx        # About / Project info (rename to about.tsx if desired)
 assets/
-  ```
+```
 
 ## 🏗️ Architecture (High Level)
 
@@ -67,8 +67,8 @@ assets/
 
 ```bash
 # clone
-git clone https://github.com/<your-org>/<your-repo>.git
-cd <your-repo>
+git clone https://github.com/Ezequiel060805/Allge-Care.git
+cd Allge-Care
 
 # install deps
 npm install
