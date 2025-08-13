@@ -5,17 +5,17 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?logo=typescript&logoColor=fff)](https://www.typescriptlang.org/)  
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](#license)
 
-A cross-platform (iOS/Android) app to **monitor and optimize Spirulina cultivation** using an IoT architecture. The app surfaces real-time readings (pH, temperature, dissolved oxygen, light, CO₂), shows trends with charts, and sends alerts when parameters drift out of optimal ranges. It also supports **automated agitation scheduling** (e.g., every 2–4 hours based on CO₂ concentration) and remote control features.
+A cross-platform (iOS/Android) app to **monitor and optimize Spirulina cultivation** using an IoT architecture. The app surfaces real-time readings (pH, temperature, light), shows trends with charts, and sends alerts when parameters drift out of optimal ranges. It also supports **automated agitation scheduling** (e.g., every 2–4 hours based on CO₂ concentration) and remote control features.
 
 ---
 
 ## ✨ Key Features
 
-- **Real-time monitoring** of pH, temperature, dissolved oxygen, light, and CO₂.  
-- **Automated agitation control** (servomotors) with cycles tuned to CO₂ levels (every 2–4 hours).  
+- **Real-time monitoring** of pH, temperature,light.  
+- **Automated agitation control** (water bump) with cycles tuned to CO₂ levels (every 2–4 hours).  
 - **Threshold-based alerts & predictive notifications** when values leave safe ranges.  
 - **Historical charts & trends** (day, week, month) for data-driven decisions.  
-- **Remote access** to the cultivation system via Wi-Fi/Bluetooth + cloud.  
+- **Remote access** to the cultivation system via Wi-Fi + cloud.  
 - **Modular IoT architecture** integrating sensors, microcontroller, cloud, and mobile UI.
 
 ---
@@ -34,17 +34,12 @@ app/
   Acerca de.tsx        # About / Project info (rename to about.tsx if desired)
 assets/
   ...
-```
-
-> Tip: Consider renaming `Acerca de.tsx` to `about.tsx` for consistency.
-
----
 
 ## 🏗️ Architecture (High Level)
 
-**Devices/Sensors**: pH, temperature, dissolved oxygen, light, CO₂  
-**Controller/Actuators**: Microcontroller (Arduino/Raspberry Pi), servomotors, relays  
-**Connectivity**: Wi-Fi/Bluetooth to cloud or local gateway  
+**Devices/Sensors**: pH, temperature, light.  
+**Controller/Actuators**: Microcontroller (Arduino/Raspberry Pi), water bump, relays  
+**Connectivity**: Wi-Fi to cloud or local gateway  
 **Data & App**: Cloud API (REST/MQTT) + this React Native app for visualization, control, and alerts
 
 ---
@@ -76,8 +71,9 @@ git clone https://github.com/<your-org>/<your-repo>.git
 cd <your-repo>
 
 # install deps
-pnpm install
-# or: npm install / yarn
+npm install
+npm install expo
+npx expo install expo-linear-gradient
 ```
 
 ### Environment Variables
@@ -164,12 +160,9 @@ eas build -p android
 
 ## 🗺️ Roadmap
 
-- [ ] Predictive alerts based on trends  
+- [ ] Monitoring sensors 
 - [ ] Multi-tank support & tagging  
-- [ ] Role-based access control  
-- [ ] CSV/Excel export & data sharing  
-- [ ] Localization (en/es)  
-- [ ] Push notifications (Expo Notifications)
+- [ ] Local Alerts
 
 ---
 
@@ -203,12 +196,7 @@ Please follow the commit style, run `pnpm lint && pnpm test` before pushing, and
 
 _Add GIFs/screenshots of the dashboard, trends, and controls here._  
 _Optional: link to a public Expo preview or TestFlight/Play Store betas._
-
----
-
-### How to adapt this README to your repo
-
-- Replace placeholders (`<your-org>`, API endpoints, MQTT broker, screenshots).  
-- Align the **Tech Stack** and **Data Contracts** with your actual backend.  
-- If you already chose state management or charting libs, update the sections accordingly.  
-- Localize the **About** screen referencing the project brief.
+<img width="616" height="1352" alt="image" src="https://github.com/user-attachments/assets/95e7fe8d-a76d-4cf8-8e6d-1972c4ff9e19" />
+<img width="617" height="1299" alt="image" src="https://github.com/user-attachments/assets/d9a4a846-4c0d-4f16-91d5-e39bb7857a7d" />
+<img width="619" height="1334" alt="image" src="https://github.com/user-attachments/assets/097f4add-074b-4374-baba-2a0025d0592d" />
+<img width="627" height="1328" alt="image" src="https://github.com/user-attachments/assets/e551797a-6f27-4cf7-bdbe-143f8356e4bd" />
