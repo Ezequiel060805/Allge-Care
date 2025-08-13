@@ -127,17 +127,6 @@ eas build -p android
 
 > Tune publish intervals and QoS to balance latency vs. battery/bandwidth.
 
----
-
-## 🖼️ Screens (Proposed)
-
-- **Dashboard (index.tsx)**: live tiles for each metric, sparkline, last updated  
-- **Trends (two.tsx)**: switch Day/Week/Month, pinch-zoom charts, export CSV  
-- **Controls (three.tsx)**: set agitation interval (2–4 h), thresholds, enable/disable alerts  
-- **Auth (LoginScreen.tsx)**: sign-in, token storage, protected routes  
-- **About (Acerca de.tsx)**: project background, authors, links
-
----
 
 ## ✅ Quality
 
